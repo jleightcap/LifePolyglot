@@ -33,11 +33,11 @@ gen_const = [
 ]
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate state.z80 from given initial state or a random state")
+    parser = argparse.ArgumentParser(description="Generate state.asm from given initial state or a random state")
     parser.add_argument("--state", help="Plaintext initial state")
     parser.add_argument("--rand", help="Generate random initial state", action="store_true")
     args = parser.parse_args()
-    fp = open("state.z80", "w")
+    fp = open("state.asm", "w")
 
     if args.rand:
         fp.writelines(rand_asm)
@@ -59,7 +59,7 @@ if __name__ == "__main__":
                     last_row = row
                 fp.write("    LD      (IX+" + str(col) + "), A\n")
                 row_has_alive = 1
-    sys.stdout.write("Generated assembly for given state.dat. Run `make` to assembly .8xp machine code.\n")
+    sys.stdout.write("Generated assembly for given state.dat. Run `make` to assemble .8xp machine code.\n")
 
     state_dat.close()
     fp.close()

@@ -23,7 +23,7 @@
 
 
     .ORG    ProgStart
-    .DB     t2ByteTok, tAsmCmp  ; Magic constant of TI-83+ Z80 assembly
+    .DB     t2ByteTok, tAsmCmp      ; Magic constant of TI-83+ Z80 assembly
 
 ; Load temporary memory
     LD      HL, (tempMem)
@@ -36,7 +36,7 @@
     b_call(_RunIndicOff)
 
 ; State initialization
-#include "state.z80"
+#include "state.asm"
 
 
 main:
@@ -79,7 +79,7 @@ generation_loop:
     LD      A, (HL)
     RLCA
     SUB     %101
-    CP      %111-%101+%001
+    CP      %111-%101+%001      ; :0 magic
     LD      A, D
     RRA
     LD      (HL), A
@@ -94,7 +94,7 @@ generation_loop:
     LD      DE, plotSScreen
     LD      C, PIXELS_LOOP/8
 display_loop:
-    LD      A, (HL)             ; A.0 = *(tempSwapArea+ii)
+    LD      A, (HL)             ; A.0 = *(tempSwapArea+8ii)
     INC     HL
     RLCA
     OR      (HL)                ; A.1 |= *(tempSwapArea+8ii+1)
