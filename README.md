@@ -5,4 +5,4 @@ Includes Python script that generates Z80 assembly to initialize memory for:
   (the R register).
 - A given state in `state.dat`.
 
-![](TI83/tilife.gif)
+![](tilife.gif)
